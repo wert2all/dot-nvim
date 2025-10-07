@@ -1,0 +1,5 @@
+{
+  "darcubox-nvim": { "branch": "main", "commit": "5e102a1f2a997842e1a6361499991160cb2c3606" },
+  "lazy.nvim": { "branch": "main", "commit": "59334064f8604ca073791c25dcc5c9698865406e" },
+  "mini.starter": { "branch": "main", "commit": "b43df0b0c66b14802e28d4761ed902704e3796e3" }
+}
