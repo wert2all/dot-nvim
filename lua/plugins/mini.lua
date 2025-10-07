@@ -4,4 +4,9 @@ return {
           require('mini.starter').setup()
     end
   },
+  { 'nvim-mini/mini.icons', version = false,
+    config = function()
+      require('mini.icons').setup()
+    end
+  },
 }
