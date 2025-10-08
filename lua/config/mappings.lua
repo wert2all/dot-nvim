@@ -2,9 +2,34 @@ local _ext = require("utils").extend
 
 local M = {
   prefix = {
-    git = "<Leader>g"
+    git  = "<Leader>g",
+    next = "]",
+    previous = "["
   },
   keys = {}
+}
+
+M.keys.core = {
+  ["n"] = {
+    -- Keep cursor centered when scrolling and searching
+    ["<C-d>"] = { nil, "<C-d>zz" },
+    ["<C-u>"] = { nil, "<C-u>zz" },
+    ["n"] = { nil, "nzzv"},
+    ["N"] = { nil, "Nzzv"},
+
+
+    -- quit
+    ["<C-q>"] = { nil, ":q!<CR>" },
+  },
+  ["v"]  = {
+    -- better indenting
+    ["<"] = { nil, "<gv" },
+    [">"] = { nil, ">gv" },
+
+    -- paste over currently selected text without yanking it
+    ["p"] = { nil, '"_dp' },
+    ["P"] = { nil, '"_dP' },
+  }
 }
 
 M.keys.git = {
@@ -47,5 +72,6 @@ function M.which_spec()
   return groups 
 end
 
+M.set_mappings( M.keys.core,  { noremap = true, silent = true })
 
 return M
