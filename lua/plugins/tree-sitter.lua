@@ -16,7 +16,7 @@ return {
       local ensure_installed = require("config.languages").treesitter()
 
       require("nvim-treesitter.configs").setup(
-        require("utils").extend(opts, {ensure_installed = ensure_installed })
+        require("utils.core").extend(opts, {ensure_installed = ensure_installed })
       )
     end
 }

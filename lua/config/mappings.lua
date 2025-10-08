@@ -1,4 +1,4 @@
-local _ext = require("utils").extend
+local _ext = require("utils.core").extend
 
 local M = {
   prefix = {

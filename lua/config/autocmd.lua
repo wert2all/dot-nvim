@@ -64,4 +64,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- LspInfo
-vim.api.nvim_create_user_command('LspInfo', require("config.languages").lsp_info, { desc = "Show comprehensive LSP information" })
+vim.api.nvim_create_user_command('LspInfo', require("utils.lsp").lsp_info, { desc = "Show comprehensive LSP information" })
