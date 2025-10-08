@@ -17,6 +17,9 @@ M.keys.core = {
     ["n"] = { nil, "nzzv"},
     ["N"] = { nil, "Nzzv"},
 
+    -- next and previous buffer
+    ["]b"] = {"Next buffer", ":bnext<CR>" },
+    ["[b"] = {"Previous buffer", ":bprevious<CR>" },
 
     -- quit
     ["<C-q>"] = { nil, ":q!<CR>" },
