@@ -1,4 +1,6 @@
 -- from kickstart.nvim
+-- line numbers
+vim.opt.number = true
 -- relative line numbers
 vim.o.relativenumber = true
 -- Enable mouse mode

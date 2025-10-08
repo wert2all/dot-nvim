@@ -5,6 +5,7 @@ local M = {
     git      = "<Leader>g",
     buffer   = "<Leader>b",
     lsp      = "<Leader>l",
+    files    = "<Leader>f",
 
     next     = "]",
     previous = "[",
@@ -133,6 +134,14 @@ M.keys.lsp = {
   },
   ["i"] = {
     ["<C-S>"] = { "Signature Help", vim.lsp.buf.signature_help },
+  },
+}
+
+M.keys.files = {
+  ["n"] = {
+    -- [M.prefix.files .. "f"] = { "Find file", ":Pick files<CR>" },
+    -- [M.prefix.files .. "b"] = { "Buffers", ":Pick buffers<CR>" },
+    -- [M.prefix.files .. "w"] = { "Find word", ":Pick grep_live<CR>" },
   },
 }
 
