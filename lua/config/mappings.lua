@@ -38,4 +38,14 @@ function M.set_mappings(map_table, base)
   end
 end
 
+function M.which_spec()
+  local groups = { mode = { "n", "v" }}
+  for desc, prefix in pairs(M.prefix) do
+    table.insert(groups, { prefix, ["group"] = desc })
+  end
+
+  return groups 
+end
+
+
 return M
