@@ -2,8 +2,9 @@ local _ext = require("utils").extend
 
 local M = {
   prefix = {
-    git  = "<Leader>g",
-    next = "]",
+    git      = "<Leader>g",
+    buffer   = "<Leader>b",
+    next     = "]",
     previous = "["
   },
   keys = {}
@@ -53,6 +54,40 @@ M.keys.git = {
   },
 }
 
+M.keys.buffer = {
+  ["n"]={
+    ["c"]={ "Close current buffer", 
+      function ()
+        local minibufremove = require('mini.bufremove')
+        local current = vim.api.nvim_get_current_buf()
+        minibufremove.delete(current)
+      end
+    },
+    [M.prefix.buffer .. "c"]={ "Close all buffers except current", 
+      function ()
+        local minibufremove = require('mini.bufremove')
+        local current = vim.api.nvim_get_current_buf()
+        local bufs = vim.fn.getbufinfo { buflisted = true }
+        for _, buf in ipairs(bufs) do
+          local bufnr = buf.bufnr
+          if bufnr ~= current then minibufremove.delete(bufnr, false) end
+        end
+      end
+    },
+    [M.prefix.buffer .. "C"] = {"Close all buffers", 
+      function ()
+        local minibufremove = require('mini.bufremove')
+        local bufs = vim.fn.getbufinfo { buflisted = true }
+        for _, buf in ipairs(bufs) do
+          minibufremove.delete(buf.bufnr, false)
+        end
+      end
+    },
+  },
+  ["v"]={
+  }
+}
+
 M.keys.neotree = {
   ["n"] = {
     ["<Leader>e"] = {"Toggle neo-tree", "<cmd>Neotree float reveal<cr>"},
@@ -86,5 +121,7 @@ function M.which_spec()
 end
 
 M.set_mappings( M.keys.core,  { noremap = true, silent = true })
+M.set_mappings( M.keys.buffer,  { noremap = true, silent = true })
+
 
 return M

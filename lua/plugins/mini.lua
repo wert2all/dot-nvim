@@ -9,4 +9,9 @@ return {
       require('mini.icons').setup()
     end
   },
+  { 'nvim-mini/mini.bufremove', version = false,
+    config = function()
+      require('mini.bufremove').setup()
+    end
+  },
 }
