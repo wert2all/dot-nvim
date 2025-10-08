@@ -4,8 +4,11 @@ local M = {
   prefix = {
     git      = "<Leader>g",
     buffer   = "<Leader>b",
+    lsp      = "<Leader>l",
+
     next     = "]",
-    previous = "["
+    previous = "[",
+    go       = "g",
   },
   keys = {}
 }
@@ -98,7 +101,17 @@ M.keys.neotree = {
   ["v"] = {
     ["<Leader>e"] = {"Toggle neo-tree", "<cmd>Neotree float reveal<cr>"},
   }, 
+}
 
+M.keys.lsp = {
+  ["n"]={
+    ["gd"]  = {"Go to definition", vim.lsp.buf.definition},
+    ["gD"]  = {"Go to declaration", vim.lsp.buf.declaration},
+    ["grn"] = {"Rename", vim.lsp.buf.rename},
+
+    [M.prefix.lsp .. 'r'] = {"Rename", vim.lsp.buf.rename },
+  },
+  ["v"]={},
 }
 
 --- Table based API for setting keybindings
