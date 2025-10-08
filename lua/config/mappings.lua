@@ -27,6 +27,12 @@ M.keys.core = {
     ["<C-k>"] = { "Move to above split", "<C-w>k" },
     ["<C-l>"] = { "Move to right split", "<C-w>l" },
 
+    -- rezizing split windows
+    ["<C-Up>"] = { "Resize split up", "<Cmd>resize -2<CR>" },
+    ["<C-Down>"] = { "Resize split down", "<Cmd>resize +2<CR>" },
+    ["<C-Left>"] = { "Resize split left", "<Cmd>vertical resize -2<CR>" },
+    ["<C-Right>"] = { "Resize split right", "<Cmd>vertical resize +2<CR>" },
+
     -- next and previous buffer
     ["]b"] = { "Next buffer", ":bnext<CR>" },
     ["[b"] = { "Previous buffer", ":bprevious<CR>" },
