@@ -1,6 +1,4 @@
-local M = {
-  map = {}
-}
+local M = {}
 
 function M.extend(default, opts)
   opts = opts or {}

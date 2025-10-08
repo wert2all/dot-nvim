@@ -16,52 +16,36 @@ api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 -- go to last loc when opening a buffer
 -- this mean that when you open a file, you will be at the last position
 api.nvim_create_autocmd("BufReadPost", {
-    callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        local lcount = vim.api.nvim_buf_line_count(0)
-        if mark[1] > 0 and mark[1] <= lcount then
-            pcall(vim.api.nvim_win_set_cursor, 0, mark)
-        end
-    end,
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
 })
 
 
 -- show cursor line only in active window
 local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
 api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-    pattern = "*",
-    command = "set cursorline",
-    group = cursorGrp,
+  pattern = "*",
+  command = "set cursorline",
+  group = cursorGrp,
 })
 api.nvim_create_autocmd(
-    { "InsertEnter", "WinLeave" },
-    { pattern = "*", command = "set nocursorline", group = cursorGrp }
+  { "InsertEnter", "WinLeave" },
+  { pattern = "*", command = "set nocursorline", group = cursorGrp }
 )
 
 -- mapping LSP keys
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local mappings = require("config.mappings")
-    mappings.set_mappings(mappings.keys.lsp, { buffer = args.buf})
-
-    -- map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
-    -- map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to declaration" })
-    --
-    -- map({ "n", "x" }, "gra", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code action" })
-    -- map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code action" })
-    --
-    -- map("n", "grn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
-    -- map("n", "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
-    --
-    -- map("n", "grr", vim.lsp.buf.references, { buffer = bufnr, desc = "References" })
-    -- map("n", "<leader>lR", vim.lsp.buf.references, { buffer = bufnr, desc = "References" })
-    --
-    -- map("n", "gri", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Implementation" })
-    -- map("n", "gy", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Definition of current type" })
-    --
-    -- map({ "i", "s" }, "<C-S>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature help" })
+    mappings.set_mappings(mappings.keys.lsp, { buffer = args.buf })
   end,
 })
 
 -- LspInfo
-vim.api.nvim_create_user_command('LspInfo', require("utils.lsp").lsp_info, { desc = "Show comprehensive LSP information" })
+vim.api.nvim_create_user_command('LspInfo', require("utils.lsp").lsp_info,
+  { desc = "Show comprehensive LSP information" })

@@ -68,11 +68,10 @@ vim.opt.swapfile = false                                -- creates a swapfile
 vim.opt.expandtab = true                                -- convert tabs to spaces
 vim.opt.shiftwidth = 2                                  -- the number of spaces inserted for each indentation
 vim.opt.breakindent = true                              -- wrap lines with indent
-vim.opt.signcolumn = "yes:1"                            --  show the sign column, otherwise it would shift the text each time
+vim.opt.signcolumn =
+"yes:1"                                                 --  show the sign column, otherwise it would shift the text each time
 vim.opt.wrap = false                                    -- display lines as one long line
 vim.opt.showcmd = false                                 -- Don't show the command in the last line
 vim.opt.ruler = true                                    -- Don't show the ruler
 
-vim.opt.winborder = "none"      -- https://neovim.io/doc/user/options.html#'winborder'
-
-
+vim.opt.winborder = "none"                              -- https://neovim.io/doc/user/options.html#'winborder'

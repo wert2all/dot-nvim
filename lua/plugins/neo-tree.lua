@@ -17,7 +17,7 @@ return {
     follow_current_file = {
       enabled = true,
     },
-    sources = { "filesystem"},
+    sources = { "filesystem" },
   },
   config = function(_, opts)
     require('neo-tree').setup(opts)

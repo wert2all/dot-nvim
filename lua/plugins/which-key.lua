@@ -20,7 +20,7 @@ return {
         max = math.huge,
       },
     },
-    spec = require("config.mappings").which_spec(), 
+    spec = require("config.mappings").which_spec(),
   },
   keys = {
     {

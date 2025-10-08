@@ -1,6 +1,6 @@
 return {
   {
-     "lewis6991/gitsigns.nvim",
+    "lewis6991/gitsigns.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -16,7 +16,7 @@ return {
 
         on_attach = function(bufnr)
           local mappings = require("config.mappings")
-          mappings.set_mappings( mappings.keys.git, { buffer = bufnr})
+          mappings.set_mappings(mappings.keys.git, { buffer = bufnr })
         end,
       })
     end,
