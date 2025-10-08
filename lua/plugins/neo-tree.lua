@@ -10,7 +10,7 @@ return {
     disable_netrw = true,
     enable_git_status = true,
     enable_diagnostics = true,
-    sync_root_with_cwd = true,
+    sync_root_with_cwd = false,
 
     popup_border_style = "",
     close_if_last_window = true,

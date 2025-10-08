@@ -21,6 +21,12 @@ M.keys.core = {
     ["n"] = { nil, "nzzv" },
     ["N"] = { nil, "Nzzv" },
 
+    -- move by split windows
+    ["<C-h>"] = { "Move to left split", "<C-w>h" },
+    ["<C-j>"] = { "Move to below split", "<C-w>j" },
+    ["<C-k>"] = { "Move to above split", "<C-w>k" },
+    ["<C-l>"] = { "Move to right split", "<C-w>l" },
+
     -- next and previous buffer
     ["]b"] = { "Next buffer", ":bnext<CR>" },
     ["[b"] = { "Previous buffer", ":bprevious<CR>" },
