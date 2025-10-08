@@ -38,4 +38,30 @@ api.nvim_create_autocmd(
     { pattern = "*", command = "set nocursorline", group = cursorGrp }
 )
 
+-- mapping LSP keys
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local mappings = require("config.mappings")
+    mappings.set_mappings(mappings.keys.lsp, { buffer = args.buf})
 
+    -- map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
+    -- map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to declaration" })
+    --
+    -- map({ "n", "x" }, "gra", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code action" })
+    -- map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code action" })
+    --
+    -- map("n", "grn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
+    -- map("n", "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
+    --
+    -- map("n", "grr", vim.lsp.buf.references, { buffer = bufnr, desc = "References" })
+    -- map("n", "<leader>lR", vim.lsp.buf.references, { buffer = bufnr, desc = "References" })
+    --
+    -- map("n", "gri", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Implementation" })
+    -- map("n", "gy", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Definition of current type" })
+    --
+    -- map({ "i", "s" }, "<C-S>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature help" })
+  end,
+})
+
+-- LspInfo
+vim.api.nvim_create_user_command('LspInfo', require("config.languages").lsp_info, { desc = "Show comprehensive LSP information" })
