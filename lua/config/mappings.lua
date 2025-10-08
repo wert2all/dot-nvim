@@ -58,9 +58,13 @@ M.keys.buffer = {
   ["n"]={
     ["c"]={ "Close current buffer", 
       function ()
-        local minibufremove = require('mini.bufremove')
         local current = vim.api.nvim_get_current_buf()
-        minibufremove.delete(current)
+        require('mini.bufremove').delete(current)
+        local bufs = vim.fn.getbufinfo { buflisted = 1 }
+        if not bufs[2] then
+          require("mini.starter").open()
+        end
+
       end
     },
     [M.prefix.buffer .. "c"]={ "Close all buffers except current", 
