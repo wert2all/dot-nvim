@@ -27,4 +27,5 @@ return {
       log_level = vim.lsp.protocol.MessageType.Warning,
     }
   },
+  mason = { "stylua" },
 }
