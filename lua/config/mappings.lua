@@ -50,6 +50,16 @@ M.keys.git = {
   },
 }
 
+M.keys.neotree = {
+  ["n"] = {
+    ["<Leader>e"] = {"Toggle neo-tree", "<cmd>Neotree float reveal<cr>"},
+  }, 
+  ["v"] = {
+    ["<Leader>e"] = {"Toggle neo-tree", "<cmd>Neotree float reveal<cr>"},
+  }, 
+
+}
+
 --- Table based API for setting keybindings
 ---@param map_table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
 ---@param base? vim.keymap.set.Opts A base set of options to set on every keybinding
