@@ -13,4 +13,21 @@ function L.treesitter()
   return l
 end
 
+function L.formatters()
+  local f = {}
+
+  for _, opts in pairs(L.installed) do
+    if opts.ft and opts.formatters then
+      local ftf = {}
+
+      for _, formatter in pairs(opts.formatters) do
+        table.insert(ftf, formatter)
+      end
+
+      f[opts.ft] = ftf
+    end
+  end
+  return f
+end
+
 return L
