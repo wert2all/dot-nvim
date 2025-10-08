@@ -47,7 +47,7 @@ M.keys.git = {
 
     ["[G"]                = { "First Git hunk",        function() require("gitsigns").nav_hunk "first" end},
     ["]G"]                = { "Last Git hunk",         function() require("gitsigns").nav_hunk "last" end},
-    
+
     ["]g"]                = { "Next git hunk",         require("gitsigns").next_hunk},
     ["[g"]                = { "Previous git hunk",     require("gitsigns").prev_hunk},
 
@@ -59,7 +59,7 @@ M.keys.git = {
 
 M.keys.buffer = {
   ["n"]={
-    ["<Leader>c"]={ "Close current buffer", 
+    ["<Leader>c"]={ "Close current buffer",
       function ()
         local current = vim.api.nvim_get_current_buf()
         require('mini.bufremove').delete(current)
@@ -69,7 +69,7 @@ M.keys.buffer = {
         end
       end
     },
-    [M.prefix.buffer .. "c"]={ "Close all buffers except current", 
+    [M.prefix.buffer .. "c"]={ "Close all buffers except current",
       function ()
         local minibufremove = require('mini.bufremove')
         local current = vim.api.nvim_get_current_buf()
@@ -80,7 +80,7 @@ M.keys.buffer = {
         end
       end
     },
-    [M.prefix.buffer .. "C"] = {"Close all buffers", 
+    [M.prefix.buffer .. "C"] = {"Close all buffers",
       function ()
         local minibufremove = require('mini.bufremove')
         local bufs = vim.fn.getbufinfo { buflisted = true }
@@ -97,10 +97,10 @@ M.keys.buffer = {
 M.keys.neotree = {
   ["n"] = {
     ["<Leader>e"] = {"Toggle neo-tree", "<cmd>Neotree float reveal<cr>"},
-  }, 
+  },
   ["v"] = {
     ["<Leader>e"] = {"Toggle neo-tree", "<cmd>Neotree float reveal<cr>"},
-  }, 
+  },
 }
 
 M.keys.lsp = {
@@ -108,10 +108,19 @@ M.keys.lsp = {
     ["gd"]  = {"Go to definition", vim.lsp.buf.definition},
     ["gD"]  = {"Go to declaration", vim.lsp.buf.declaration},
     ["grn"] = {"Rename", vim.lsp.buf.rename},
+    ["gra"] = {"Code actions", vim.lsp.buf.code_action},
+    ["grr"] = {"References", vim.lsp.buf.references},
+    ["gri"] = {"Implementation", vim.lsp.buf.implementation},
+    ["gy"]  = {"Definition of current type", vim.lsp.buf.type_definition},
 
+    [M.prefix.lsp .. 'a'] = {"Code actions", vim.lsp.buf.code_action },
     [M.prefix.lsp .. 'r'] = {"Rename", vim.lsp.buf.rename },
+    [M.prefix.lsp .. "R"] = {"References", vim.lsp.buf.references},
+    [M.prefix.lsp .. "n"] = {"Signature Help", vim.lsp.buf.signature_help}
   },
-  ["v"]={},
+  ["i"]={
+    ["<C-S>"] = {"Signature Help", vim.lsp.buf.signature_help},
+  },
 }
 
 --- Table based API for setting keybindings
@@ -133,7 +142,7 @@ function M.which_spec()
     table.insert(groups, { prefix, ["group"] = desc })
   end
 
-  return groups 
+  return groups
 end
 
 M.set_mappings( M.keys.core,  { noremap = true, silent = true })
