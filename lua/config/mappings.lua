@@ -116,7 +116,8 @@ M.keys.lsp = {
     [M.prefix.lsp .. 'a'] = {"Code actions", vim.lsp.buf.code_action },
     [M.prefix.lsp .. 'r'] = {"Rename", vim.lsp.buf.rename },
     [M.prefix.lsp .. "R"] = {"References", vim.lsp.buf.references},
-    [M.prefix.lsp .. "n"] = {"Signature Help", vim.lsp.buf.signature_help}
+    [M.prefix.lsp .. "n"] = {"Signature Help", vim.lsp.buf.signature_help},
+    [M.prefix.lsp .. "f"] = {"Format", vim.lsp.buf.format},
   },
   ["i"]={
     ["<C-S>"] = {"Signature Help", vim.lsp.buf.signature_help},
