@@ -44,20 +44,52 @@ function L.treesitter()
   return l
 end
 
-function L.lsp()
-  local l = {}
+local initLsp = function()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem = {
+    documentationFormat = { "markdown", "plaintext" },
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    labelDetailsSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = {
+      properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits",
+      },
+    },
+  }
+
+  vim.lsp.config("*", { capabilities = capabilities, on_init = function(client, _)
+    if client:supports_method "textDocument/semanticTokens" then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end
+ })
+end
+
+local lsp_servers = function()
+  local servers = {}
   for _, opts in pairs(L.installed) do
     if opts.lsp then
       for name, config in pairs(opts.lsp) do
-        l[name] = config
+        servers[name] = config
       end
     end
   end
-  return l;
+  return servers;
+end
+function L.lsp_servers()
+  initLsp()
+  return lsp_servers()
 end
 
 function L.mason()
-  local servers = L.lsp()
+  local servers = lsp_servers()
   local m = {}
   for name, _ in pairs(servers) do
     table.insert(m, name)
