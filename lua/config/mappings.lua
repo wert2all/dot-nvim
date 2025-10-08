@@ -56,7 +56,7 @@ M.keys.git = {
 
 M.keys.buffer = {
   ["n"]={
-    ["c"]={ "Close current buffer", 
+    ["<Leader>c"]={ "Close current buffer", 
       function ()
         local current = vim.api.nvim_get_current_buf()
         require('mini.bufremove').delete(current)
@@ -64,7 +64,6 @@ M.keys.buffer = {
         if not bufs[2] then
           require("mini.starter").open()
         end
-
       end
     },
     [M.prefix.buffer .. "c"]={ "Close all buffers except current", 
