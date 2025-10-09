@@ -32,13 +32,22 @@ vim.diagnostic.config({
 
 return {
   {
-    "mason-org/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = {
       { "mason-org/mason.nvim", opts = {} },
     },
     opts = {
-      automatic_enable = false,
-      ensure_installed = utils_lsp.mason()
+      integrations = {
+        ['mason-lspconfig'] = false,
+        ['mason-null-ls'] = false,
+        ['mason-nvim-dap'] = false,
+      },
     },
+    config = function(_, opts)
+      local _opts = require("utils.core").extend(opts, {
+        ensure_installed = utils_lsp.mason(),
+      })
+      require("mason-tool-installer").setup(_opts)
+    end
   },
 }

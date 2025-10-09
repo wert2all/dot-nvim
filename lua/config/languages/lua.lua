@@ -28,6 +28,6 @@ return {
       log_level = vim.lsp.protocol.MessageType.Warning,
     },
   },
-  mason = {},
+  mason = { "lua-language-server", "stylua" },
   formatters = {},
 }

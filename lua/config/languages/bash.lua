@@ -17,5 +17,6 @@ return {
       filetypes = { 'bash', 'sh' },
       root_markers = { '.git' },
     }
-  }
+  },
+  mason = { "bash-language-server" },
 }

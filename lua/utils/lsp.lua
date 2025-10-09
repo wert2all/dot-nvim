@@ -149,11 +149,11 @@ function L.mason()
   local m         = {}
   local installed = require("config.languages").installed
   for _, opts in pairs(installed) do
-    if opts.lsp then
-      for server, _ in pairs(opts.lsp) do
-        table.insert(m, server)
-      end
-    end
+    -- if opts.lsp then
+    --   for server, _ in pairs(opts.lsp) do
+    --     table.insert(m, server)
+    --   end
+    -- end
     if opts.mason then
       for _, server in pairs(opts.mason) do
         table.insert(m, server)
