@@ -143,6 +143,7 @@ M.keys.files = {
     [M.prefix.files .. "r"] = { "Find word", function() Snacks.picker.recent() end },
     [M.prefix.files .. "w"] = { "Find word", function() Snacks.picker.grep() end },
     [M.prefix.files .. "b"] = { "Buffers", function() Snacks.picker.buffers() end },
+    [M.prefix.files .. "g"] = { "Git changes", function() Snacks.picker.git_status() end },
   },
 }
 
