@@ -139,15 +139,13 @@ M.keys.lsp = {
 
 M.keys.files = {
   ["n"] = {
-    -- [M.prefix.files .. "f"] = { "Find file", ":Pick files<CR>" },
-    -- [M.prefix.files .. "b"] = { "Buffers", ":Pick buffers<CR>" },
-    -- [M.prefix.files .. "w"] = { "Find word", ":Pick grep_live<CR>" },
+    [M.prefix.files .. "f"] = { "Find file", function() Snacks.picker.files() end },
+    [M.prefix.files .. "r"] = { "Find word", function() Snacks.picker.recent() end },
+    [M.prefix.files .. "w"] = { "Find word", function() Snacks.picker.grep() end },
+    [M.prefix.files .. "b"] = { "Buffers", function() Snacks.picker.buffers() end },
   },
 }
 
---- Table based API for setting keybindings
----@param map_table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
----@param base? vim.keymap.set.Opts A base set of options to set on every keybinding
 function M.set_mappings(map_table, base)
   for mode, maps in pairs(map_table) do
     for keymap, options in pairs(maps) do
