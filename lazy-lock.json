@@ -20,5 +20,6 @@
   "schemastore.nvim": { "branch": "main", "commit": "7d0a0b914437bfefcb17d0a7f83d9f2147cc2d28" },
   "snacks.nvim": { "branch": "main", "commit": "dae80fb393f712bd7352a20f9185f5e16b69f20f" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
+  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "6d8dc61a9c4077d9ec62a9c8998506dcd2a5b6af" },
   "which-key.nvim": { "branch": "main", "commit": "b4177e3eaf15fe5eb8357ebac2286d488be1ed00" }
 }
