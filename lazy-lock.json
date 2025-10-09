@@ -1,4 +1,5 @@
 {
+  "ansible-vim": { "branch": "master", "commit": "6718ff81fe36f5f4fbf6675d95b16e4a74814827" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "conform.nvim": { "branch": "master", "commit": "fbcb4fa7f34bfea9be702ffff481a8e336ebf6ed" },
   "darcubox-nvim": { "branch": "main", "commit": "5e102a1f2a997842e1a6361499991160cb2c3606" },
