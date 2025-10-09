@@ -1,5 +1,6 @@
 local _ext = require("utils.core").extend
 
+local keys = {}
 local M = {
   prefix = {
     git      = "<Leader>g",
@@ -12,10 +13,9 @@ local M = {
     previous = "[",
     go       = "g",
   },
-  keys = {}
 }
 
-M.keys.core = {
+keys.core = {
   ["n"] = {
     -- Keep cursor centered when scrolling and searching
     ["<C-d>"] = { nil, "<C-d>zz" },
@@ -62,7 +62,7 @@ M.keys.core = {
   }
 }
 
-M.keys.git = {
+keys.git = {
   ["n"] = {
     [M.prefix.git .. "p"] = { "Preview git hunk", require("gitsigns").preview_hunk },
     [M.prefix.git .. "r"] = { "Reset hunk", require("gitsigns").reset_hunk },
@@ -81,7 +81,7 @@ M.keys.git = {
   },
 }
 
-M.keys.buffer = {
+keys.buffer = {
   ["n"] = {
     ["<Leader>c"] = { "Close current buffer",
       function()
@@ -118,7 +118,7 @@ M.keys.buffer = {
   }
 }
 
-M.keys.neotree = {
+keys.neotree = {
   ["n"] = {
     ["<Leader>e"] = { "Toggle neo-tree", "<cmd>Neotree float reveal<cr>" },
   },
@@ -127,7 +127,7 @@ M.keys.neotree = {
   },
 }
 
-M.keys.lsp = {
+keys.lsp = {
   ["n"] = {
     ["gd"]                = { "Go to definition", vim.lsp.buf.definition },
     ["gD"]                = { "Go to declaration", vim.lsp.buf.declaration },
@@ -151,7 +151,7 @@ M.keys.lsp = {
   },
 }
 
-M.keys.files = {
+keys.files = {
   ["n"] = {
     [M.prefix.files .. "f"] = { "Find file", function() Snacks.picker.files() end },
     [M.prefix.files .. "r"] = { "Find word", function() Snacks.picker.recent() end },
@@ -161,11 +161,9 @@ M.keys.files = {
   },
 }
 
-M.keys.obsidian = {
-  ["n"] = {}
-}
+keys.obsidian = {}
 
-function M.set_mappings(map_table, base)
+local function set_mappings(map_table, base)
   for mode, maps in pairs(map_table) do
     for keymap, options in pairs(maps) do
       local cmd = options[2]
@@ -175,13 +173,10 @@ function M.set_mappings(map_table, base)
   end
 end
 
-function M.which_spec()
-  local groups = { mode = { "n", "v" } }
-  for desc, prefix in pairs(M.prefix) do
-    table.insert(groups, { prefix, ["group"] = desc })
+function M.map_group(group, base)
+  if keys[group] then
+    set_mappings(keys[group], base)
   end
-
-  return groups
 end
 
 return M

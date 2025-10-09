@@ -15,8 +15,7 @@ return {
         },
 
         on_attach = function(bufnr)
-          local mappings = require("config.mappings")
-          mappings.set_mappings(mappings.keys.git, { buffer = bufnr })
+          require("config.mappings").map_group("git", { buffer = bufnr })
         end,
       })
     end,

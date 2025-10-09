@@ -21,8 +21,6 @@ return {
   },
   config = function(_, opts)
     require('neo-tree').setup(opts)
-
-    local mappings = require("config.mappings")
-    mappings.set_mappings(mappings.keys.neotree, {})
+    require("config.mappings").map_group("neotree", {})
   end
 }

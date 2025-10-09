@@ -1,3 +1,14 @@
+local function create_spec()
+  local prefixes = require("config.mappings").prefix
+
+  local groups = { mode = { "n", "v" } }
+  for desc, prefix in pairs(prefixes) do
+    table.insert(groups, { prefix, ["group"] = desc })
+  end
+
+  return groups
+end
+
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
@@ -20,7 +31,7 @@ return {
         max = math.huge,
       },
     },
-    spec = require("config.mappings").which_spec(),
+    spec = create_spec(),
   },
   keys = {
     {
