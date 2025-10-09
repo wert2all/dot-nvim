@@ -39,18 +39,18 @@ api.nvim_create_autocmd(
 )
 
 -- mapping LSP keys
-vim.api.nvim_create_autocmd("LspAttach", {
+api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     require("utils.mappings").map_group("lsp", { buffer = args.buf })
   end,
 })
 
 -- LspInfo
-vim.api.nvim_create_user_command('LspInfo', require("utils.lsp").lsp_info,
+api.nvim_create_user_command('LspInfo', require("utils.lsp").lsp_info,
   { desc = "Show comprehensive LSP information" })
 
 -- mapping obsidian keys
-vim.api.nvim_create_autocmd("LspAttach", {
+api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client_id = args.data.client_id
     local client = vim.lsp.get_client_by_id(client_id)
