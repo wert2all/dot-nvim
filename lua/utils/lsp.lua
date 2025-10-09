@@ -1,34 +1,5 @@
+local utils = require("utils.core")
 local L = {}
-
-local initLsp = function()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem = {
-    documentationFormat = { "markdown", "plaintext" },
-    snippetSupport = true,
-    preselectSupport = true,
-    insertReplaceSupport = true,
-    labelDetailsSupport = true,
-    deprecatedSupport = true,
-    commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
-    resolveSupport = {
-      properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-      },
-    },
-  }
-
-  vim.lsp.config("*", {
-    capabilities = capabilities,
-    on_init = function(client, _)
-      if client:supports_method "textDocument/semanticTokens" then
-        client.server_capabilities.semanticTokensProvider = nil
-      end
-    end
-  })
-end
 
 local lsp_servers = function()
   local servers = {}
@@ -42,11 +13,6 @@ local lsp_servers = function()
     end
   end
   return servers;
-end
-
-function L.lsp_servers()
-  initLsp()
-  return lsp_servers()
 end
 
 function L.lsp_info()
@@ -149,11 +115,6 @@ function L.mason()
   local m         = {}
   local installed = require("config.languages").installed
   for _, opts in pairs(installed) do
-    -- if opts.lsp then
-    --   for server, _ in pairs(opts.lsp) do
-    --     table.insert(m, server)
-    --   end
-    -- end
     if opts.mason then
       for _, server in pairs(opts.mason) do
         table.insert(m, server)
@@ -161,6 +122,50 @@ function L.mason()
     end
   end
   return m
+end
+
+function L.init()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem = {
+    documentationFormat = { "markdown", "plaintext" },
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    labelDetailsSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = {
+      properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits",
+      },
+    },
+  }
+
+  vim.lsp.config("*", {
+    capabilities = capabilities,
+    on_init = function(client, _)
+      if client:supports_method "textDocument/semanticTokens" then
+        client.server_capabilities.semanticTokensProvider = nil
+      end
+    end
+  })
+
+  local servers = lsp_servers()
+
+  for name, config in pairs(servers) do
+    vim.lsp.config(name, config)
+    vim.lsp.enable(name)
+  end
+end
+
+function L.update(server, config)
+  local old_config = lsp_servers()[server]
+  if old_config then
+    vim.lsp.config(server, utils.extend(old_config, config))
+  end
 end
 
 return L

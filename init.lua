@@ -6,3 +6,4 @@ require("config.options")
 require("config.autocmd")
 
 require("init.mappings")
+require("init.lsp")
