@@ -1,7 +1,11 @@
+-- LSPs - https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+
 local L = {
   installed = {
-    lua  = require("config.languages.lua"),
-    bash = require("config.languages.bash"),
+    lua             = require("config.languages.lua"),
+    bash            = require("config.languages.bash"),
+    markdown        = require("config.languages.markdown"),
+    markdown_inline = {},
   }
 }
 
