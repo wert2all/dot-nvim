@@ -1,5 +1,4 @@
 return {
-  ft = "yaml",
   lsp = {
     yamlls = {
       cmd = { 'yaml-language-server', '--stdio' },

@@ -1,5 +1,4 @@
 return {
-  ft = "markdown",
   mason = { "marksman", "prettier" },
   lsp = {
     marksman = {

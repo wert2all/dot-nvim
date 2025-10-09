@@ -1,5 +1,4 @@
 return {
-  ft = "lua",
   lsp = {
     lua_ls = {
       cmd = { "lua-language-server" },
@@ -28,6 +27,6 @@ return {
       log_level = vim.lsp.protocol.MessageType.Warning,
     },
   },
-  mason = { "lua-language-server", "stylua" },
+  mason = { "lua-language-server" },
   formatters = {},
 }
