@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_user_command('LspInfo', require("utils.lsp").lsp_info,
   { desc = "Show comprehensive LSP information" })
 
--- mapping LSP keys
+-- mapping obsidian keys
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client_id = args.data.client_id
