@@ -1,18 +1,16 @@
 -- LSPs - https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 
 return {
-  lua       = {
+  lua = {
     filetypes = {
       lua = {
         lsp = "lua_ls",
-        formatters = { "stylua" },
-        linters = { "luacheck" },
-      }
+      },
     },
     treesitter = { "lua" },
-    mason = { "lua-language-server", "stylua", "luacheck" },
+    mason = { "lua-language-server" },
   },
-  bash      = {
+  bash = {
     filetypes = {
       sh = {
         lsp = "bashls",
@@ -26,18 +24,18 @@ return {
     treesitter = { "bash" },
     mason = { "bash-language-server", "shfmt" },
   },
-  yaml      = {
+  yaml = {
     filetypes = {
       yaml = {
         lsp = "yamlls",
         formatters = { "prettier" },
         linters = { "yamllint" },
-      }
+      },
     },
     treesitter = { "yaml" },
     mason = { "yaml-language-server", "ansible-lint", "ansible-language-server" },
   },
-  markdown  = {
+  markdown = {
     filetypes = {
       markdown = {
         lsp = "marksman",
@@ -49,10 +47,10 @@ return {
   },
 
   installed = {
-    lua             = require("config.languages.lua"),
-    bash            = require("config.languages.bash"),
-    markdown        = require("config.languages.markdown"),
+    lua = require("config.languages.lua"),
+    bash = require("config.languages.bash"),
+    markdown = require("config.languages.markdown"),
     markdown_inline = {},
-    yaml            = require("config.languages.yaml"),
-  }
+    yaml = require("config.languages.yaml"),
+  },
 }
