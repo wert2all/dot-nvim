@@ -131,7 +131,7 @@ M.keys.lsp = {
     [M.prefix.lsp .. 'r'] = { "Rename", vim.lsp.buf.rename },
     [M.prefix.lsp .. "R"] = { "References", vim.lsp.buf.references },
     [M.prefix.lsp .. "n"] = { "Signature Help", vim.lsp.buf.signature_help },
-    [M.prefix.lsp .. "f"] = { "Format", vim.lsp.buf.format },
+    [M.prefix.lsp .. "f"] = { "Format", function() require("conform").format({ bufnr = vim.api.nvim_get_current_buf() }) end },
   },
   ["i"] = {
     ["<C-S>"] = { "Signature Help", vim.lsp.buf.signature_help },
