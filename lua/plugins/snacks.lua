@@ -21,7 +21,7 @@ return {
     },
     config = function(_, opts)
       require("snacks").setup(opts)
-      require("config.mappings").map_group("files", {})
+      require("utils.mappings").map_group("files", {})
 
       -- zen-mode
       vim.api.nvim_create_user_command('Zen', function() Snacks.zen() end, { desc = "Toggle zen mode" })

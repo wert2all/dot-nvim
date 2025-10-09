@@ -15,7 +15,7 @@ return {
         },
 
         on_attach = function(bufnr)
-          require("config.mappings").map_group("git", { buffer = bufnr })
+          require("utils.mappings").map_group("git", { buffer = bufnr })
         end,
       })
     end,

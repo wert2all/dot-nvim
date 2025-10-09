@@ -41,7 +41,7 @@ api.nvim_create_autocmd(
 -- mapping LSP keys
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    require("config.mappings").map_group("lsp", { buffer = args.buf })
+    require("utils.mappings").map_group("lsp", { buffer = args.buf })
   end,
 })
 

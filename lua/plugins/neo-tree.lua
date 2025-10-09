@@ -21,6 +21,6 @@ return {
   },
   config = function(_, opts)
     require('neo-tree').setup(opts)
-    require("config.mappings").map_group("neotree", {})
+    require("utils.mappings").map_group("neotree", {})
   end
 }
