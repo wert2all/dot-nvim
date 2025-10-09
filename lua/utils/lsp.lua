@@ -1,19 +1,6 @@
 local utils = require("utils.core")
+local languages = require("config.languages")
 local L = {}
-
-local lsp_servers = function()
-  local servers = {}
-  local installed = require("config.languages").installed
-
-  for _, opts in pairs(installed) do
-    if opts.lsp then
-      for name, config in pairs(opts.lsp) do
-        servers[name] = config
-      end
-    end
-  end
-  return servers;
-end
 
 function L.lsp_info()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -153,18 +140,29 @@ function L.init()
     end
   })
 
-  local servers = lsp_servers()
+  local lsps = {}
+  for _, language in pairs(languages) do
+    if language.filetypes then
+      for filetype, opts in pairs(language.filetypes) do
+        if opts.lsp then
+          if not lsps[opts.lsp] then
+            lsps[opts.lsp] = {}
+          end
+          table.insert(lsps[opts.lsp], filetype)
+        end
+      end
+    end
+  end
 
-  for name, config in pairs(servers) do
-    vim.lsp.config(name, config)
+  for name, filetypes in pairs(lsps) do
     vim.lsp.enable(name)
+    L.update(name, { filetypes = filetypes })
   end
 end
 
 function L.update(server, config)
-  local old_config = lsp_servers()[server]
-  if old_config then
-    vim.lsp.config(server, utils.extend(old_config, config))
+  if vim.lsp.config[server] then
+    vim.lsp.config(server, utils.extend(vim.lsp.config[server], config))
   end
 end
 
