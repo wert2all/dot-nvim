@@ -168,5 +168,4 @@ end
 M.set_mappings(M.keys.core, { noremap = true, silent = true })
 M.set_mappings(M.keys.buffer, { noremap = true, silent = true })
 
-
 return M
