@@ -57,6 +57,7 @@ M.keys.git = {
     [M.prefix.git .. "p"] = { "Preview git hunk", require("gitsigns").preview_hunk },
     [M.prefix.git .. "r"] = { "Reset hunk", require("gitsigns").reset_hunk },
     [M.prefix.git .. "R"] = { "Reset Git buffer", function() require("gitsigns").reset_buffer() end },
+    [M.prefix.git .. "l"] = { "Git log", function() Snacks.picker.git_log() end },
 
     ["[G"]                = { "First Git hunk", function() require("gitsigns").nav_hunk('first') end },
     ["]G"]                = { "Last Git hunk", function() require("gitsigns").nav_hunk('last') end },
