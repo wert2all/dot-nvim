@@ -4,3 +4,5 @@ vim.g.maplocalleader = " "
 require("config.lazy")
 require("config.options")
 require("config.autocmd")
+
+require("init.mappings")

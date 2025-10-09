@@ -6,6 +6,7 @@ local M = {
     buffer   = "<Leader>b",
     lsp      = "<Leader>l",
     files    = "<Leader>f",
+    obsidian = "<Leader>O",
 
     next     = "]",
     previous = "[",
@@ -37,6 +38,15 @@ M.keys.core = {
     -- next and previous buffer
     ["]b"] = { "Next buffer", ":bnext<CR>" },
     ["[b"] = { "Previous buffer", ":bprevious<CR>" },
+
+    -- new obsidian note
+
+    [M.prefix.obsidian .. 'n'] = { "New note",
+      function()
+        require "obsidian"
+        vim.api.nvim_command("Obsidian new inbox/" .. os.date "%Y-%m-%d" .. "-note.md")
+      end,
+    },
 
     -- quit
     ["<C-q>"] = { nil, ":q!<CR>" },
@@ -131,7 +141,10 @@ M.keys.lsp = {
     [M.prefix.lsp .. 'r'] = { "Rename", vim.lsp.buf.rename },
     [M.prefix.lsp .. "R"] = { "References", vim.lsp.buf.references },
     [M.prefix.lsp .. "n"] = { "Signature Help", vim.lsp.buf.signature_help },
-    [M.prefix.lsp .. "f"] = { "Format", function() require("conform").format({ bufnr = vim.api.nvim_get_current_buf() }) end },
+    [M.prefix.lsp .. "f"] = { "Format", function()
+      print(vim.inspect(vim.api.nvim_get_current_buf()))
+      require("conform").format()
+    end },
   },
   ["i"] = {
     ["<C-S>"] = { "Signature Help", vim.lsp.buf.signature_help },
@@ -146,6 +159,10 @@ M.keys.files = {
     [M.prefix.files .. "b"] = { "Buffers", function() Snacks.picker.buffers() end },
     [M.prefix.files .. "g"] = { "Git changes", function() Snacks.picker.git_status() end },
   },
+}
+
+M.keys.obsidian = {
+  ["n"] = {}
 }
 
 function M.set_mappings(map_table, base)
@@ -166,8 +183,5 @@ function M.which_spec()
 
   return groups
 end
-
-M.set_mappings(M.keys.core, { noremap = true, silent = true })
-M.set_mappings(M.keys.buffer, { noremap = true, silent = true })
 
 return M
