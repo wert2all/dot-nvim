@@ -58,11 +58,11 @@ M.keys.git = {
     [M.prefix.git .. "r"] = { "Reset hunk", require("gitsigns").reset_hunk },
     [M.prefix.git .. "R"] = { "Reset Git buffer", function() require("gitsigns").reset_buffer() end },
 
-    ["[G"]                = { "First Git hunk", function() require("gitsigns").nav_hunk "first" end },
-    ["]G"]                = { "Last Git hunk", function() require("gitsigns").nav_hunk "last" end },
+    ["[G"]                = { "First Git hunk", function() require("gitsigns").nav_hunk('first') end },
+    ["]G"]                = { "Last Git hunk", function() require("gitsigns").nav_hunk('last') end },
 
-    ["]g"]                = { "Next git hunk", require("gitsigns").next_hunk },
-    ["[g"]                = { "Previous git hunk", require("gitsigns").prev_hunk },
+    ["]g"]                = { "Next git hunk", function() require("gitsigns").nav_hunk('next') end },
+    ["[g"]                = { "Previous git hunk", function() require("gitsigns").nav_hunk('prev') end },
 
   },
   ["v"] = {
