@@ -16,8 +16,12 @@ end
 
 function L.treesitter()
   local l = {}
-  for lang, _ in pairs(languages.installed) do
-    table.insert(l, lang)
+  for _, language in pairs(languages) do
+    if language.treesitter then
+      for _, ft in pairs(language.treesitter) do
+        table.insert(l, ft)
+      end
+    end
   end
   return l
 end

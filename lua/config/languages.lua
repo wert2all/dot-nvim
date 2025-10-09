@@ -44,8 +44,8 @@ return {
         formatters = { "prettier" },
       },
     },
-    mason = { "marksman", "prettier" },
     treesitter = { "markdown", "markdown_inline" },
+    mason = { "marksman", "prettier" },
   },
 
   installed = {
