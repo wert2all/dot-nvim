@@ -5,10 +5,6 @@ return function(prefix)
         function()
           local current = vim.api.nvim_get_current_buf()
           require('mini.bufremove').delete(current)
-          local bufs = vim.fn.getbufinfo { buflisted = 1 }
-          if not bufs[2] then
-            require("mini.starter").open()
-          end
         end
       },
       [prefix .. "c"] = { "Close all buffers except current",
