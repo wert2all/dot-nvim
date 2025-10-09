@@ -19,7 +19,11 @@ M.keys = {
   lsp      = require("config.mappings.lsp")(M.prefix.lsp),
   files    = require("config.mappings.files")(M.prefix.files),
   neotree  = require("config.mappings.neotree")(),
-  obsidian = {},
+  obsidian = {
+    ["n"] = {
+      [M.prefix.obsidian] = { "Toggle preview", ":Markview<CR>" }
+    },
+  },
 }
 
 return M
