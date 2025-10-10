@@ -161,7 +161,8 @@ end
 
 function L.update(server, config)
   if vim.lsp.config[server] then
-    vim.lsp.config(server, utils.extend(vim.lsp.config[server], config))
+    local ext_config = utils.extend(vim.lsp.config[server], config)
+    vim.lsp.config(server, ext_config)
   end
 end
 

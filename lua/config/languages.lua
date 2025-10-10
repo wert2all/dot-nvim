@@ -31,6 +31,11 @@ return {
         formatters = { "prettier" },
         linters = { "yamllint" },
       },
+      ["yaml.ansible"] = {
+        lsp = "ansiblels",
+        formatters = { "prettier" },
+        linters = { "ansible-lint" },
+      },
     },
     treesitter = { "yaml" },
     mason = { "yaml-language-server", "ansible-lint", "ansible-language-server" },
