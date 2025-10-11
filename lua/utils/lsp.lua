@@ -155,14 +155,17 @@ function L.init()
 
   for name, filetypes in pairs(lsps) do
     vim.lsp.enable(name)
-    L.update(name, { filetypes = filetypes })
-  end
-end
 
-function L.update(server, config)
-  if vim.lsp.config[server] then
-    local ext_config = utils.extend(vim.lsp.config[server], config)
-    vim.lsp.config(server, ext_config)
+    if vim.lsp.config[name] then
+      local config = vim.lsp.config[name]
+      if not config.filetypes then
+        config.filetypes = {}
+      end
+      for _, filetype in pairs(filetypes) do
+        table.insert(config.filetypes, filetype)
+      end
+      vim.lsp.config(name, config)
+    end
   end
 end
 
