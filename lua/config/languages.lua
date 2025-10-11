@@ -1,6 +1,7 @@
 -- LSPs - https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 
 return {
+  angular    = require("config.languages.angular"),
   bash       = require("config.languages.bash"),
   html       = require("config.languages.html"),
   json       = require("config.languages.json"),
