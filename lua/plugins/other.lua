@@ -1,5 +1,6 @@
 return {
   "rgroli/other.nvim",
+  event = "BufRead",
   opts = {
     mappings = { "angular", "golang" },
   },
